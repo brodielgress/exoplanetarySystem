@@ -1,1 +1,1 @@
-# TeamTreeHouse_JavaScriptPractice
+This is a digital model of the 55 Cancri planetary system, in the Zodiac constellation of Cancer.
