@@ -4,31 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Superpower</title>
+    <title>Mars Rover Random Picture</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<header>
-    <p>Welcome to 55 Cancri, spacefarer.</p>
-</header>
-    <div class="copernicus">
-        
-    </div>
-    <div class="galileo">
-        
-    </div>
-    <div class="brahe">
-        
-    </div>
-    <div class="lipperhey">
-        
-    </div>
-    <div class="janssen">
-        
-    </div>
-    <div class="harriot">
-        
-    </div>
 <body>
-<script src="js/javascript.js"></script>
+    <header>
+        <p>Here is the Mars picture of the day!</p>
+    </header>
+        <div class="marsRoverContainer">
+            <label for="sols">Select a Sol</label>
+            <select class="fullWidth" id="sols"></select>
+            <label for="camera">Select a Mars Rover camera</label>
+            <select class="fullWidth" id="camera"></select>
+
+            <div class="marsRoverPic"></div>
+
+            <form>
+                <label for="name">Name</label>
+                <input class="fullWidth" id="name" type="text">
+
+                <label for="comment">Comment</label>
+                <textarea class="fullWidth" id="comment"></textarea>
+
+                <button type="submit" id="submit">Submit</button>
+            </form>
+            <p>Made by Brodie Gress</p>
+        </div>
+    <script src="js/javascript.js"></script>
 </body>
 </html>

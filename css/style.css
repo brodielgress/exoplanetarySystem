@@ -1,3 +1,13 @@
+/* You application must have a responsive design through the use of media queries, 
+        Bootstrap, CSS Grid, Flexbox, and/or other similar approaches - 
+        we need to ensure that you can integrate your new JavaScript skills 
+        with your HTML/CSS skills you previously learned
+    We will test your site on at least two 
+        different screen sizes (mobile and desktop) 
+        and must see that you’ve incorporate 
+        some element of responsive design to it */
+
+
 body {
     background-color: black;
 }
@@ -19,12 +29,31 @@ header > p {
     margin-bottom: 10vh;
 }
 
-.copernicus {
-    background-color: orangered;
-    display: flex;
-    border-radius: 50%;
+/*For Selection Tools
+-------------------------------------------------*/
+
+.fullWidth {
+    width: 100%;
+    box-sizing: border-box;
     margin: auto;
-    justify-self: center;
-    height: 50px;
-    width: 50px;
+    display: flex;
+}
+
+/*Media Queries
+-------------------------------------------------*/
+/* tablet media query */
+
+@media 
+only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+
+/* desktop media query */
+
+@media
+only screen and (min-width: 992px) {
+    .fullWidth {
+        max-width: 75%;
+    }
 }
