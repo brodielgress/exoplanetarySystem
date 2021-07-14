@@ -15,7 +15,7 @@
 // ●	Analyze text and display information about it (ex: how many words in a paragraph)
 // ●	Visualize data in a graph, chart, or other visual representation of data
 // ●	Other features can be added to this list with mentor or staff permission, 
-//          but we want to see you stretch your skills, so you’ll want to pick something challenging.
+//      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
 const marsRoverUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DetiR4nF8TdmeOzvFdjiWDWpkxbv59HfpTG1XfLa";
 
@@ -34,10 +34,10 @@ function fetchData(url) {
 
 fetchData(marsRoverUrl)
     .then(data => {
-        const solNumber = data[0].photos.sol;
-        const roverImage = data.photos.img_src;
+        const solNumber = data.photos.sol;
+        const roverImage = data.photos[28].img_src;
         const cameraName = data.photos.camera.name;
-        console.log(solNumber)
+        console.log(roverImage);
     })
 
 require("node-fetch");
@@ -53,6 +53,8 @@ function checkStatus(response) {
         return Promise.reject(new Error(response.statusText));
     }
 }
+
+
 
 // --------------------------------------------
 // EVENT LISTENERS
