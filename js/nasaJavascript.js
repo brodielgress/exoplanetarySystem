@@ -18,6 +18,9 @@
 //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
 const marsRoverUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DetiR4nF8TdmeOzvFdjiWDWpkxbv59HfpTG1XfLa";
+const select = document.getElementById('id');
+const card = document.querySelector('.marsRoverPic')
+const form = document.querySelector('form')
 
 // --------------------------------------------
 // FETCH FUNCTIONS
@@ -31,17 +34,15 @@ function fetchData(url) {
         .catch(error => console.error('Sorry, there was an error in processing your request.', error))
 }
 
-
 fetchData(marsRoverUrl)
     .then(data => {
-        const solNumber = data.photos.sol;
-        const roverImage = data.photos[28].img_src;
+        const idNumber = data.photos.id;
+        const roverImage = data.photos.img_src;
         const cameraName = data.photos.camera.name;
-        console.log(roverImage);
+        console.log(idNumber);
     })
 
 require("node-fetch");
-
 
 // --------------------------------------------
 // HELPER FUNCTIONS
@@ -54,7 +55,24 @@ function checkStatus(response) {
     }
 }
 
+function createList(data) {
+    const options = idNumber.map(item => `
+    <option value='${item}'>${item}</option>
+    `).join();
+    select.innerHTML = options;
+}
 
+function createPictures(data) {
+    const html = `
+        <img src='${data}' alt>
+        <p>Click to view images of ${select.value}s</p>
+    `;
+    card.innerHTML = html;
+}
+
+function fetchMarsRoverImage() {
+    const 
+}
 
 // --------------------------------------------
 // EVENT LISTENERS
