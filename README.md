@@ -1,1 +1,1 @@
-This is a digital model of the 55 Cancri planetary system, in the Zodiac constellation of Cancer.
+Check out the Mars Rover picture!
