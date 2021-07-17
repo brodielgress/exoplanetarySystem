@@ -48,19 +48,16 @@ require("node-fetch");
 // HELPER FUNCTIONS
 // --------------------------------------------
 
-fetch(marsRoverUrl)
-    .then(checkStatus)
-    .then(res => res.json())
-    .then(data => {
-        createList(data.photos);
-    })
-    .catch(error => console.error('Sorry, there was an error in processing your request.', error))
+function getCameraNames(photos) {
+    const cameraNames = photos.map(photo => photo.camera.name);
+    let uniqueCameraNames = [...new Set(cameraNames)];
+    return uniqueCameraNames;
+}
 
-function createList(photos) {
-    const select = document.getElementById('id');
-    const options = photos.map(photo => `
-        <option value='${photo.camera.id}'>
-            ${photo.camera.full_name}
+function createCameraDropdownList(cameraNames) {
+    const select = document.getElementById('camera');
+    const options = cameraNames.map(cameraName => `
+        <option value='${cameraName}'>${cameraName}
         </option>
         `).join();
     select.innerHTML = options;
