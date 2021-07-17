@@ -17,7 +17,7 @@
 // ●	Other features can be added to this list with mentor or staff permission, 
 //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
-const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DetiR4nF8TdmeOzvFdjiWDWpkxbv59HfpTG1XfLa}`;
+// const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
 const select = document.getElementById('id');
 const card = document.querySelector('.marsRoverPic')
 const form = document.querySelector('form')
@@ -26,23 +26,17 @@ const form = document.querySelector('form')
 // FETCH FUNCTIONS
 // --------------------------------------------
 
-function fetchData(url) {
-    return fetch(url)
-        .then(checkStatus)
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Sorry, there was an error in processing your request.', error))
+async function getMarsRoverData() { 
+    // const response = await fetch(marsRoverUrl);
+    const response = await fetch('photos.json');
+    const data = await response.json();
+    const cameraNames = getCameraNames(data.photos);
+    createCameraDropdownList(cameraNames);
+    console.log(data);
+    return data;
 }
 
-fetchData(marsRoverUrl)
-    .then(data => {
-        const idNumber = data.photos.id;
-        const roverImage = data.photos.img_src;
-        const cameraName = data.photos.camera.name;
-        console.log(idNumber);
-    })
-
-require("node-fetch");
+getMarsRoverData();
 
 // --------------------------------------------
 // HELPER FUNCTIONS
@@ -58,12 +52,25 @@ function createCameraDropdownList(cameraNames) {
     const select = document.getElementById('camera');
     const options = cameraNames.map(cameraName => `
         <option value='${cameraName}'>${cameraName}
-        </option>
-        `).join();
+            </option>
+    `).join();
     select.innerHTML = options;
 }
 
-fetch(url).then((data) => createList(data))
+// function createList(photos) {
+//     const select = document.getElementById('camera');
+//     console.log(photos);
+//     const options = photos.map(photo => `
+//         <option value='${photo.camera.name}'>
+//             ${photo.camera.name}
+//         </option>
+//         `).join();
+//     select.innerHTML = options;
+// }
+
+createList(marsRoverData);
+
+// fetch(marsRoverUrl).then((data) => createList(data))
 
 function createPictures(data) {
     const html = `
