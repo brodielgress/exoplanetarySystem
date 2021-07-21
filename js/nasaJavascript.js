@@ -66,11 +66,6 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-function getMarsRoverPictures(photos) {
-    const roverPictures = photos.map(photo => photo.img_src);
-    return roverPictures;
-}
-
 function createPictures(data) {
     const roverPicture = `
         <img src='${data}' alt>
@@ -79,7 +74,14 @@ function createPictures(data) {
     card.innerHTML = roverPicture;
 }
 
+function createSpecificCamPicsArray(photos) {
+    const select = document.getElementById('camera');
+    let camUrlPics = photos.filter(photo => photo.camera.full_name = select.value);
+    return camUrlPics;
+}
 
+createSpecificCamPicsArray();
+console.log(camUrlPics);
 
 
 // --------------------------------------------
