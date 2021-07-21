@@ -38,12 +38,21 @@ async function getMarsRoverData() {
 
 getMarsRoverData();
 
+async function fetchMarsRoverImage() {
+    const response = await fetch('photos.json');
+    const data = await response.json();
+    const roverPhotos = getMarsRoverData(data.photos);
+    createPictures(roverPhotos);
+    console.log(data);
+    return data;
+}
+
 // --------------------------------------------
 // HELPER FUNCTIONS
 // --------------------------------------------
 
 function getCameraNames(photos) {
-    const cameraNames = photos.map(photo => photo.camera.name);
+    const cameraNames = photos.map(photo => photo.camera.full_name);
     let uniqueCameraNames = [...new Set(cameraNames)];
     return uniqueCameraNames;
 }
@@ -57,34 +66,27 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-// function createList(photos) {
-//     const select = document.getElementById('camera');
-//     console.log(photos);
-//     const options = photos.map(photo => `
-//         <option value='${photo.camera.name}'>
-//             ${photo.camera.name}
-//         </option>
-//         `).join();
-//     select.innerHTML = options;
-// }
-
-createList(marsRoverData);
-
-// fetch(marsRoverUrl).then((data) => createList(data))
-
-function createPictures(data) {
-    const html = `
-        <img src='${data}' alt>
-        <p>Click to view images of ${select.value}s</p>
-    `;
-    card.innerHTML = html;
+function getMarsRoverPictures(photos) {
+    const roverPictures = photos.map(photo => photo.img_src);
+    return roverPictures;
 }
 
-function fetchMarsRoverImage() {}
+function createPictures(data) {
+    const roverPicture = `
+        <img src='${data}' alt>
+        <p>Click to view images from ${photo.camera.full_name}s</p>
+    `;
+    card.innerHTML = roverPicture;
+}
+
+
+
 
 // --------------------------------------------
 // EVENT LISTENERS
 // --------------------------------------------
+
+
 
 // --------------------------------------------
 // POST DATA
