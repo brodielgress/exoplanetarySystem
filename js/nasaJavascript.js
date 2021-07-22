@@ -18,7 +18,7 @@
 //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
 // const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
-const select = document.getElementById('id');
+const select = document.getElementById('camera');
 const card = document.querySelector('.marsRoverPic')
 const form = document.querySelector('form')
 
@@ -79,6 +79,8 @@ function createSpecificCamPicsArray(photos) {
     let camUrlPics = photos.filter(photo => photo.camera.full_name = select.value);
     return camUrlPics;
 }
+
+console.log(select.value);
 
 createSpecificCamPicsArray();
 console.log(camUrlPics);
