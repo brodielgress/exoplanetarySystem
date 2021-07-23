@@ -17,7 +17,6 @@
 // ●	Other features can be added to this list with mentor or staff permission, 
 //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
-// const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
 const select = document.getElementById('camera');
 const card = document.querySelector('.marsRoverPic')
 const form = document.querySelector('form')
@@ -27,7 +26,6 @@ const form = document.querySelector('form')
 // --------------------------------------------
 
 async function getMarsRoverData() { 
-    // const response = await fetch(marsRoverUrl);
     const response = await fetch('photos.json');
     const data = await response.json();
     const cameraNames = getCameraNames(data.photos);
@@ -35,7 +33,6 @@ async function getMarsRoverData() {
     const camPicsUrl = createSpecificCamPicsArray(data.photos);
     console.log(data);
     console.log(camPicsUrl);
-    marsRoverImageRandomizer(data.photos);
     return data;
 }
 
@@ -50,8 +47,6 @@ async function fetchMarsRoverImage() {
     return data;
 }
 
-
-
 // --------------------------------------------
 // HELPER FUNCTIONS
 // --------------------------------------------
@@ -60,6 +55,14 @@ function getCameraNames(photos) {
     const cameraNames = photos.map(photo => photo.camera.full_name);
     let uniqueCameraNames = [...new Set(cameraNames)];
     return uniqueCameraNames;
+}
+
+function createSpecificCamPicsArray(uniqueCams) {
+    const select = document.getElementById('camera');
+    let camPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value);
+    let camUrlPics = camPics.map(camPic => camPic[0].img_src);
+    console.log(camUrlPics);
+    return camUrlPics;
 }
 
 function createCameraDropdownList(cameraNames) {
@@ -71,37 +74,38 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-// function createPictures(data) {
-//     const roverPicture = `
-//         <img src='${data}' alt>
-//         <p>Click to view images from ${photo.camera.full_name}s</p>
-//     `;
-//     card.innerHTML = roverPicture;
+function createRoverPicture(roverPic) {
+    const card = document.querySelector('.marsRoverPics')
+    const roverPic = roverPic.
+}
+
+
+// function fetchRoverImage(data) {
+//     const rover = select.value;
+//     const img = card.querySelector('img');
+//     const p = card.querySelector('p');
+
+//     await fetch('photos.json');
+//     const camUrls = createSpecificCamPicsArray(camUrls);
+//     let 
 // }
 
-function createSpecificCamPicsArray(uniqueCams) {
-    const select = document.getElementById('camera');
-    let camUrlPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value);
-    return camUrlPics;
-}
-
-function marsRoverImageRandomizer(data) {
-    const card = document.querySelector('.marsRoverPic');
-    const camUrlPics = createSpecificCamPicsArray(data.photos);
-    const roverPicture = `
-        <img src='${camUrlPics.img_src}' alt>
-        <p>Click to view images from the ${camUrlPics.camera.full_name}</p>
-    `;
-    card.innerHTML = roverPicture;
-    return roverPicture;
-}
-
+// function marsRoverImageRandomizer(data) {
+//     const card = document.querySelector('.marsRoverPic');
+//     const camUrlPics = createSpecificCamPicsArray(data.photos);
+//     const roverPicture = `
+//         <img src='${camUrlPics.img_src}' alt>
+//         <p>Click to view images from the ${camUrlPics.camera.full_name}</p>
+//     `;
+//     card.innerHTML = roverPicture;
+//     return roverPicture;
+// }
 
 // --------------------------------------------
 // EVENT LISTENERS
 // --------------------------------------------
 
-
+select.addEventListener('change', createRoverPicture);
 
 // --------------------------------------------
 // POST DATA
