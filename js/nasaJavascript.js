@@ -32,7 +32,10 @@ async function getMarsRoverData() {
     const data = await response.json();
     const cameraNames = getCameraNames(data.photos);
     createCameraDropdownList(cameraNames);
+    const camPicsUrl = createSpecificCamPicsArray(data.photos);
     console.log(data);
+    console.log(camPicsUrl);
+    marsRoverImageRandomizer(data.photos);
     return data;
 }
 
@@ -46,6 +49,8 @@ async function fetchMarsRoverImage() {
     console.log(data);
     return data;
 }
+
+
 
 // --------------------------------------------
 // HELPER FUNCTIONS
@@ -66,24 +71,30 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-function createPictures(data) {
-    const roverPicture = `
-        <img src='${data}' alt>
-        <p>Click to view images from ${photo.camera.full_name}s</p>
-    `;
-    card.innerHTML = roverPicture;
-}
+// function createPictures(data) {
+//     const roverPicture = `
+//         <img src='${data}' alt>
+//         <p>Click to view images from ${photo.camera.full_name}s</p>
+//     `;
+//     card.innerHTML = roverPicture;
+// }
 
-function createSpecificCamPicsArray(photos) {
+function createSpecificCamPicsArray(uniqueCams) {
     const select = document.getElementById('camera');
-    let camUrlPics = photos.filter(photo => photo.camera.full_name = select.value);
+    let camUrlPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value);
     return camUrlPics;
 }
 
-console.log(select.value);
-
-createSpecificCamPicsArray();
-console.log(camUrlPics);
+function marsRoverImageRandomizer(data) {
+    const card = document.querySelector('.marsRoverPic');
+    const camUrlPics = createSpecificCamPicsArray(data.photos);
+    const roverPicture = `
+        <img src='${camUrlPics.img_src}' alt>
+        <p>Click to view images from the ${camUrlPics.camera.full_name}</p>
+    `;
+    card.innerHTML = roverPicture;
+    return roverPicture;
+}
 
 
 // --------------------------------------------
