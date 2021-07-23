@@ -74,11 +74,6 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-function createRoverPicture(roverPic) {
-    const card = document.querySelector('.marsRoverPics')
-    const roverPic = roverPic.
-}
-
 
 // function fetchRoverImage(data) {
 //     const rover = select.value;
