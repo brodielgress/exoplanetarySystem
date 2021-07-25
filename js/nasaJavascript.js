@@ -18,7 +18,7 @@
 //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
 const select = document.getElementById('camera');
-const card = document.querySelector('.marsRoverPic')
+const marsRoverPic = document.querySelector('.marsRoverPic')
 const form = document.querySelector('form')
 
 // --------------------------------------------
@@ -30,9 +30,6 @@ async function getMarsRoverData() {
     const data = await response.json();
     const cameraNames = getCameraNames(data.photos);
     createCameraDropdownList(cameraNames);
-    const camPicsUrl = createSpecificCamPicsArray(data.photos);
-    console.log(data);
-    console.log(camPicsUrl);
     return data;
 }
 
@@ -41,9 +38,9 @@ getMarsRoverData();
 async function fetchMarsRoverImage() {
     const response = await fetch('photos.json');
     const data = await response.json();
-    const roverPhotos = getMarsRoverData(data.photos);
-    createPictures(roverPhotos);
-    console.log(data);
+    const roverPhotos = createSpecificCamPicsArray(data.photos);
+    const roverPhotoDisplayed = fetchMarsRoverImage(roverPhotos);
+    createRoverPicture(roverPhotoDisplayed);
     return data;
 }
 
@@ -59,10 +56,9 @@ function getCameraNames(photos) {
 
 function createSpecificCamPicsArray(uniqueCams) {
     const select = document.getElementById('camera');
-    let camPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value);
-    let camUrlPics = camPics.map(camPic => camPic[0].img_src);
-    console.log(camUrlPics);
-    return camUrlPics;
+    let camPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value).map(uniqueCam => uniqueCam.img_src);
+    console.log(camPics);
+    return camPics;
 }
 
 function createCameraDropdownList(cameraNames) {
@@ -74,16 +70,21 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
+function fetchRoverImage() {
+    const rover = select.value;
+    const img = marsRoverPic.querySelector('img');
+    const p = marsRoverPic.querySelector('p');
+}
 
-// function fetchRoverImage(data) {
-//     const rover = select.value;
-//     const img = card.querySelector('img');
-//     const p = card.querySelector('p');
+function createRoverPicture(roverPic) {
+    const html = `
+        <img src='${roverPic}' alt>
+        <p>Click to view images from the ${select.value}`;
+        rover.innerHTML = html;
+}
 
-//     await fetch('photos.json');
-//     const camUrls = createSpecificCamPicsArray(camUrls);
-//     let 
-// }
+
+
 
 // function marsRoverImageRandomizer(data) {
 //     const card = document.querySelector('.marsRoverPic');
