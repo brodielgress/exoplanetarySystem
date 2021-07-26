@@ -29,7 +29,7 @@ async function getMarsRoverData() {
     const response = await fetch('photos.json');
     const data = await response.json();
     const cameraNames = getCameraNames(data.photos);
-    createCameraDropdownList(cameraNames);
+    createSpecificCamPicsArray(data);
     return data;
 }
 
@@ -54,13 +54,6 @@ function getCameraNames(photos) {
     return uniqueCameraNames;
 }
 
-function createSpecificCamPicsArray(uniqueCams) {
-    const select = document.getElementById('camera');
-    let camPics = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value).map(uniqueCam => uniqueCam.img_src);
-    console.log(camPics);
-    return camPics;
-}
-
 function createCameraDropdownList(cameraNames) {
     const select = document.getElementById('camera');
     const options = cameraNames.map(cameraName => `
@@ -70,6 +63,13 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
+function createSpecificCamPicsArray(uniqueCams) {
+    const select = document.getElementById('camera');
+    const picsArray = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value).map(uniqueCam => uniqueCam.img_src[0]);
+    console.log(picsArray);
+    return picsArray;
+}
+
 function fetchRoverImage() {
     const rover = select.value;
     const img = marsRoverPic.querySelector('img');
@@ -77,14 +77,12 @@ function fetchRoverImage() {
 }
 
 function createRoverPicture(roverPic) {
+    createSpecificCamPicsArray(roverPic);
     const html = `
         <img src='${roverPic}' alt>
         <p>Click to view images from the ${select.value}`;
         rover.innerHTML = html;
 }
-
-
-
 
 // function marsRoverImageRandomizer(data) {
 //     const card = document.querySelector('.marsRoverPic');
@@ -101,7 +99,7 @@ function createRoverPicture(roverPic) {
 // EVENT LISTENERS
 // --------------------------------------------
 
-select.addEventListener('change', createRoverPicture);
+select.addEventListener('change', createSpecificCamPicsArray);
 
 // --------------------------------------------
 // POST DATA
