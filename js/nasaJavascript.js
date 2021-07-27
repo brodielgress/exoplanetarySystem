@@ -15,7 +15,7 @@
 // ●	Analyze text and display information about it (ex: how many words in a paragraph)
 // ●	Visualize data in a graph, chart, or other visual representation of data
 // ●	Other features can be added to this list with mentor or staff permission, 
-//      but we want to see you stretch your skills, so you’ll want to pick something challenging.
+    //      but we want to see you stretch your skills, so you’ll want to pick something challenging.
 
 const select = document.getElementById('camera');
 const marsRoverPic = document.querySelector('.marsRoverPic')
@@ -29,7 +29,7 @@ async function getMarsRoverData() {
     const response = await fetch('photos.json');
     const data = await response.json();
     const cameraNames = getCameraNames(data.photos);
-    createSpecificCamPicsArray(data);
+    createCameraDropdownList(cameraNames);
     return data;
 }
 
@@ -38,14 +38,15 @@ getMarsRoverData();
 async function fetchMarsRoverImage() {
     const response = await fetch('photos.json');
     const data = await response.json();
-    const roverPhotos = createSpecificCamPicsArray(data.photos);
-    const roverPhotoDisplayed = fetchMarsRoverImage(roverPhotos);
-    createRoverPicture(roverPhotoDisplayed);
-    return data;
+    const roverUrl = getRoverUrl(data.photos);
+    const roverPic = createRoverPic(roverUrl);
+    return roverPic;
 }
 
+fetchMarsRoverImage();
+
 // --------------------------------------------
-// HELPER FUNCTIONS
+// CAMERA DROPDOWN LIST
 // --------------------------------------------
 
 function getCameraNames(photos) {
@@ -63,43 +64,32 @@ function createCameraDropdownList(cameraNames) {
     select.innerHTML = options;
 }
 
-function createSpecificCamPicsArray(uniqueCams) {
-    const select = document.getElementById('camera');
-    const picsArray = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value).map(uniqueCam => uniqueCam.img_src[0]);
-    console.log(picsArray);
-    return picsArray;
+// --------------------------------------------
+// CREATE AND RANDOMIZE ROVER PICTURE
+// --------------------------------------------
+
+
+function getRoverUrl(uniqueCams) {
+    const picsArray = uniqueCams.filter(uniqueCam => uniqueCam.camera.full_name === select.value).map(uniqueCam => uniqueCam.img_src);
+    const randomDigit = Math.floor(Math.random()*picsArray.length);
+    const randomPic = picsArray[randomDigit];
+    return randomPic;
 }
 
-function fetchRoverImage() {
-    const rover = select.value;
-    const img = marsRoverPic.querySelector('img');
-    const p = marsRoverPic.querySelector('p');
-}
-
-function createRoverPicture(roverPic) {
-    createSpecificCamPicsArray(roverPic);
+function createRoverPic(roverPic) {
+    const rover = document.querySelector('.marsRoverPic')
     const html = `
         <img src='${roverPic}' alt>
         <p>Click to view images from the ${select.value}`;
         rover.innerHTML = html;
 }
 
-// function marsRoverImageRandomizer(data) {
-//     const card = document.querySelector('.marsRoverPic');
-//     const camUrlPics = createSpecificCamPicsArray(data.photos);
-//     const roverPicture = `
-//         <img src='${camUrlPics.img_src}' alt>
-//         <p>Click to view images from the ${camUrlPics.camera.full_name}</p>
-//     `;
-//     card.innerHTML = roverPicture;
-//     return roverPicture;
-// }
-
 // --------------------------------------------
 // EVENT LISTENERS
 // --------------------------------------------
 
-select.addEventListener('change', createSpecificCamPicsArray);
+select.addEventListener('change', fetchMarsRoverImage);
+select.addEventListener('click', fetchMarsRoverImage);
 
 // --------------------------------------------
 // POST DATA

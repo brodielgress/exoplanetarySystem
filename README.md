@@ -1,1 +1,1 @@
-Check out the Mars Rover picture!
+This website's purpose was to show a random Mars Picture of the day. I used the Mars Rover API provided by NASA.
