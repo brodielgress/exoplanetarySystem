@@ -10,30 +10,48 @@
 <body>
     <header>
         <br>
-        <p>Here is a picture of Mars!</p>
+        <p>The View From Mars</p>
     </header>
-        <div class="marsRoverContainer">
-            <p>Select a camera from the Mars Rover, Curiosity:</p>
-            <label for="camera">Select a Mars Rover camera</label>
-            <select class="fullWidth" id="camera"></select>
-
-            <div class="marsRoverPic"></div>
-
-            <form>
-                <label for="comment">Comment</label>
-                <textarea class="fullWidth" id="comment"></textarea>
-
-                <button type="submit" class="submit">Submit</button> 
-            </form>
-
-            <form>
-                <label for="comment">Comment</label>
-                <input type="email" class="fullWidth" id="email"></input>
-
+        <div class="apiCheck">
+            <form id="apiForm">
+                <p>Please enter your API key:</p>
+                <br>
+                <label for="API"></label>
+                <input type="text" class="fullWidth" id="api"></input>
                 <button type="submit" class="submit">Submit</button>
+                <br>
+
             </form>
-            <p>Made by Brodie Gress</p>
+            <br>
         </div>
+        
+
+        <div class="marsRoverContainer">
+           
+            <div class="marsRoverForms">
+                <form id="cameraSelect">
+                    <p>Select a camera from the Mars Rover, Curiosity:</p>
+                    <br>
+                    <label for="camera"></label>
+                    <select class="fullWidth" id="camera"></select>
+                    <br>
+                </form>
+                <form id="dateSelect">
+                    <p>Please enter a date between 6 August 2012 and today</p>
+                    <br>
+                    <label for="comment"></label>
+                    <input type="date" class="fullWidth" id="email"></input>
+                    <br>
+                </form>
+                <br>
+            </div>
+            <div class="marsRoverPic">
+
+            </div>
+        </div>
+        <footer>
+            <p id="authorNote">Made by Brodie Gress, photos credit to <a href="https://www.nasa.gov/mission_pages/mars/main/index.html">NASA</a></p>
+        </footer>
     <script src="js/nasaJavascript.js"></script>
 </body>
 </html>
