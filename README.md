@@ -2,9 +2,11 @@
 
 Hello! Welcome to The View from Mars, a website designed to show random photos taken by the Mars Rover Curiosity. The website allows users to choose which Mars Rover camera from which they'd like to view photos. My website uses three clear JavaScript functions and redesigns its layout according to different media queries.
 
-**In order to use my website, first you need to attain an API key.** Instructions for how to do so are below:
+**In order to use my website, first you need to attain an API key.** 
 
-1. First, head to NASA's API page, and fill out the information below.
+Instructions for how to do so are below:
+
+1. First, head to [NASA's API page](https://api.nasa.gov/), and fill out the information below.
 
 2. Copy the API key that results from it.
 
