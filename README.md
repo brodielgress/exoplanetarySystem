@@ -56,6 +56,6 @@ The desktop app places the picture in the middle and the different selection opt
 
 Not gonna lie, I love CSS; I've always been visually inclined. I gave the website a sienna background to match that of Mars, with a Roboto font to give it that outer space tinge. I would love to include pictures of Mars or the Curiosity, possibly with an About page and link to NASA's website, to give users more context for the website.
 
-###### Thank You!
+## Thank You!
 
 That's my JavaScript project. Thank you all; I hope you enjoy it a little! I have some ways to go before I understand JavaScript and other languages, but working on this project and getting help from mentors vastly improved my skills.
