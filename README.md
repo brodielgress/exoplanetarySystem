@@ -14,7 +14,7 @@ A demo of the API is available on the same website, or you can check out the API
 
 ## JAVASCRIPT FUNCTIONS
 
-# 1. API KEY - 
+###### 1. API KEY - 
     - (Create a form and save the values (on click of Submit button) to an external file)
 
 The first JavaScript function is the NASA API key. The CheckForApiKey function in my code saves the API key to a constant, which it then inserts into the URL to access the Mars Rover database. The API input form then hides itself and shows the rest of the website: the camera selection menu, the photo, and a date selection form (the date selection form is currently inoperable).
