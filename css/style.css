@@ -10,6 +10,12 @@
 
 body {
     background-color: sienna;
+    background-image: url(/img/marsRift.jpg)
+}
+
+#marsBackground {
+    opacity: 50%;
+    z-index: -1;
 }
 
 header {
@@ -40,7 +46,7 @@ div > p, form > p {
     text-align: center;
 }
 
-img {
+#marsRoverPhoto {
     display: block;
     margin: auto;
     cursor: pointer;

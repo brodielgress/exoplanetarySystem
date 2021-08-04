@@ -26,7 +26,7 @@ If the user inputs an incorrect API key, the page will simply show as blank. Wit
 ###### 2. FETCH NASA API 
     - (Retrieve data from an external API and display data in your app (such as with fetch() or with AJAX))
 
-Once the API can successfully be pulled, the JavaScript fetches the data from the Mars Rover API and uses that data to create the camera dropdown menu and displays a photograph from the object of the selected camera, which, as of now, is always the Front Hazard Avoidance Camera. 
+Once the API can successfully be pulled, the JavaScript fetches the data from the Mars Rover API and uses that data to create the camera dropdown menu and displays a photograph from the object of the selected camera. When the website first loads, the camera, as of now, is by default the Front Hazard Avoidance Camera. 
 
 ###### 3. CAMERA DROPDOWN MENU
     - (Create an array, dictionary or list, populate it with multiple values, retrieve at least one value, and use or display it in your application)

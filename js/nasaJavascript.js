@@ -103,7 +103,7 @@ function createRoverPic(roverPic) {
     const rover = document.querySelector('.marsRoverPic')
     const html = `
         <p>Click to view images from the ${select.value}
-        <img src='${roverPic}' alt>
+        <img src='${roverPic}' id="marsRoverPhoto" alt>
         `;
         rover.innerHTML = html;
 }
