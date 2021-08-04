@@ -56,7 +56,7 @@ The desktop app places the picture in the middle and the different selection opt
 
 ## CSS NOTE
 
-Not gonna lie, I love CSS; I've always been visually inclined. I gave the website a sienna background to match that of Mars, with a Roboto font to give it that outer space tinge. I would love to include pictures of Mars or the Curiosity, possibly with an About page and link to NASA's website, to give users more context for the website.
+Not gonna lie, I love CSS; I've always been visually inclined. I gave the website a sienna background to match that of Mars (4 Aug 2021 Update: The background is now a picture of a Mars rift), with a Roboto font to give it that outer space tinge. I would love to include pictures of Mars or the Curiosity, possibly with an About page and link to NASA's website, to give users more context for the website.
 
 ## Thank You!
 
